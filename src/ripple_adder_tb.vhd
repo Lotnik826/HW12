@@ -1,4 +1,4 @@
---+----------------------------------------------------------------------------
+--+---------------------------------------------------------------------------
 --| Testbench for 4-bit Ripple-Carry Adder
 --+----------------------------------------------------------------------------
 library ieee;
@@ -49,6 +49,18 @@ begin
        w_addends <= x"FF"; w_Cin <= '1'; wait for 10 ns;
 	       assert (w_sum = x"F" and w_Cout = '1') report "bad with ones" severity failure;
        -- TODO, a few other test cases
+		w_addends <= "0000" & "0000"; w_Cin <= '1';
+		wait for 10 ns;
+		
+		w_addends <= "1010" & "0101"; w_Cin <= '0';
+		wait for 10 ns;
+		
+		w_addends <= "0101" & "0011"; w_Cin <= '0';
+		wait for 10 ns;
+		
+		w_addends <= "1110" & "0001"; w_Cin <= '1';
+		wait for 10 ns;
+       
 	
 		wait; -- wait forever
 	end process;	
